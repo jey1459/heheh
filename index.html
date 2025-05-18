@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selamatt ulang tahun acaa!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Poppins:wght@400;700&display=swap');
+        
+        :root {
+            --primary: #FF9E9E;
+            --secondary: #FFD6A5;
+            --accent: #CBFFA9;
+            --text: #5E454B;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #FFF5E4 0%, #FFD1D1 100%);
+            min-height: 100vh;
+            color: var(--text);
+        }
+        
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-family: 'Comic Neue', cursive;
+            font-size: 4rem;
+            margin: 0;
+            color: #FF6B6B;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+            animation: bounce 2s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cat-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        .cat {
+            font-size: 10rem;
+            animation: purr 1s ease infinite alternate;
+            position: relative;
+            z-index: 5;
+            filter: drop-shadow(0 10px 5px rgba(0,0,0,0.1));
+        }
+        
+        @keyframes purr {
+            0% { transform: rotate(-2deg); }
+            100% { transform: rotate(2deg); }
+        }
+        
+        .paw {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #FF9E9E, #FFD6A5);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-family: 'Comic Neue', cursive;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #FFD6A5, #FF9E9E);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .btn:hover::after {
+            opacity: 1;
+        }
+        
+        .fish {
+            position: absolute;
+            font-size: 2rem;
+            animation: swim 10s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes swim {
+            0% { 
+                transform: translateX(-100px) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateX(calc(100vw + 100px)) rotateY(0deg);
+                opacity: 0;
+            }
+        }
+        
+        .message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 100;
+            max-width: 400px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 3px dashed #FF9E9E;
+        }
+        
+        .message.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .cat-ears {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 30px solid #FF9E9E;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .cake {
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+            margin: 1rem 0;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .ball-of-yarn {
+            position: absolute;
+            font-size: 3rem;
+            animation: roll 8s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes roll {
+            0% { 
+                transform: translateX(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateX(calc(100vw + 100px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .cat-paw-print {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="cat-ears"></div>
+        <h1 id="title">Happy birthday Acaa!</h1>
+        
+        <p class="subtitle">Selamat ulang tahun Aca! Semoga apa yang kamu cita-citakan tercapai! 🐾</p>
+        
+        <div class="cat-container">
+            <div class="cat">🐱</div>
+            <div class="cake">🎂</div>
+        </div>
+        
+        <button class="btn" id="surpriseBtn">Open!</button>
+        <button class="btn" id="musicBtn">Play</button>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="message" id="message">
+        <h2 style="font-family: 'Comic Neue', cursive; color: #FF6B6B;">Untuk Acaa!</h2>
+        <p>Di hari spesialmu ini, semoga</p>
+        <p>🐾 tetap menjadi orang baik ya walaupun baru kenal sih ga tau juga baik atau tidak tapi semoga aja baik hehe</p>
+        <p>🐾 Makin Pintar</p>
+        <p>🐾 Dan tentu saja... Makin Cantikkk!</p>
+        <button class="btn" id="closeMsgBtn">Tutup</button>
+    </div>
+    
+    <audio id="birthdaySong" loop>
+        <source src="Download (1).mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // Buat ikan berenang
+        function createSwimmingFish() {
+            const fishCount = 5;
+            for (let i = 0; i < fishCount; i++) {
+                const fish = document.createElement('div');
+                fish.className = 'fish';
+                fish.innerHTML = '🐟';
+                fish.style.top = Math.random() * 80 + 10 + 'vh';
+                fish.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                fish.style.animationDelay = (Math.random() * 5) + 's';
+                document.body.appendChild(fish);
+            }
+        }
+        
+        // Buat bola benang menggelinding
+        function createYarnBalls() {
+            const yarnCount = 3;
+            for (let i = 0; i < yarnCount; i++) {
+                const yarn = document.createElement('div');
+                yarn.className = 'ball-of-yarn';
+                yarn.innerHTML = '🧶';
+                yarn.style.top = Math.random() * 80 + 10 + 'vh';
+                yarn.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                yarn.style.animationDelay = (Math.random() * 8) + 's';
+                document.body.appendChild(yarn);
+            }
+        }
+        
+        // Buat jejak kaki kucing
+        function createPawPrints() {
+            const pawCount = 20;
+            for (let i = 0; i < pawCount; i++) {
+                const paw = document.createElement('div');
+                paw.className = 'cat-paw-print';
+                paw.innerHTML = '🐾';
+                paw.style.left = Math.random() * 100 + 'vw';
+                paw.style.top = Math.random() * 100 + 'vh';
+                paw.style.transform = `rotate(${Math.random() * 360}deg)`;
+                paw.style.fontSize = (Math.random() * 1 + 0.5) + 'rem';
+                document.body.appendChild(paw);
+            }
+        }
+        
+        // Animasi kaki kucing
+        function animatePaws() {
+            const paws = document.querySelectorAll('.paw');
+            paws.forEach((paw, index) => {
+                paw.style.animation = `pawStep ${0.5 + index * 0.1}s ease-in-out infinite alternate`;
+                paw.style.animationDelay = `${index * 0.3}s`;
+            });
+            
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes pawStep {
+                    0% { transform: translateY(0) scale(1); opacity: 0; }
+                    50% { opacity: 1; }
+                    100% { transform: translateY(-20px) scale(1.2); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Toggle pesan
+        function toggleMessage() {
+            const message = document.getElementById('message');
+            const overlay = document.getElementById('overlay');
+            
+            message.classList.toggle('active');
+            overlay.classList.toggle('active');
+            
+            if (message.classList.contains('active')) {
+                createPawAnimation();
+            }
+        }
+        
+        // Toggle musik
+        function toggleMusic() {
+            const song = document.getElementById('birthdaySong');
+            const btn = document.getElementById('musicBtn');
+            
+            if (song.paused) {
+                song.play();
+                btn.textContent = 'Stop';
+            } else {
+                song.pause();
+                btn.textContent = 'Play';
+            }
+        }
+        
+        // Animasi kaki ketika pesan dibuka
+        function createPawAnimation() {
+            const container = document.querySelector('.hero');
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const paw = document.createElement('div');
+                    paw.className = 'paw';
+                    paw.innerHTML = '🐾';
+                    paw.style.position = 'absolute';
+                    paw.style.left = Math.random() * 80 + 10 + '%';
+                    paw.style.top = Math.random() * 80 + 10 + '%';
+                    paw.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+                    container.appendChild(paw);
+                    
+                    setTimeout(() => {
+                        paw.remove();
+                    }, 2000);
+                }, i * 200);
+            }
+        }
+        
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', function() {
+            createSwimmingFish();
+            createYarnBalls();
+            createPawPrints();
+            animatePaws();
+            
+            // Event listeners
+            document.getElementById('surpriseBtn').addEventListener('click', toggleMessage);
+            document.getElementById('musicBtn').addEventListener('click', toggleMusic);
+            document.getElementById('closeMsgBtn').addEventListener('click', toggleMessage);
+            
+            // Ketika mengklik overlay, tutup pesan
+            document.getElementById('overlay').addEventListener('click', toggleMessage);
+            
+            // Tambahkan efek ketika kursor mendekati kucing
+            const cat = document.querySelector('.cat');
+            cat.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.1) rotate(10deg)';
+                this.style.transition = 'all 0.3s';
+                
+                // Tambahkan efek 'meow'
+                const meow = document.createElement('div');
+                meow.textContent = 'Meow!';
+                meow.style.position = 'absolute';
+                meow.style.top = '-30px';
+                meow.style.left = '50%';
+                meow.style.transform = 'translateX(-50%)';
+                meow.style.fontFamily = "'Comic Neue', cursive";
+                meow.style.color = '#FF6B6B';
+                meow.style.fontSize = '1.5rem';
+                meow.style.animation = 'floatUp 1s ease-out forwards';
+                
+                this.parentElement.appendChild(meow);
+                
+                setTimeout(() => {
+                    meow.remove();
+                }, 1000);
+            });
+            
+            cat.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
